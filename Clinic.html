@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NYC Dental Center – Premium dental care in New York City. Book appointments for general dentistry, cosmetic dentistry, implants, orthodontics & teeth whitening."/>
+  <meta name="keywords" content="dental clinic NYC, dentist New York, cosmetic dentistry, dental implants, orthodontics"/>
+  <title>NYC Dental Center | Healthy Smiles Start Here</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <style>
+  
+:root {
+  --blue-50:  #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --blue-400: #60A5FA;
+  --blue-500: #3B82F6;
+  --blue-600: #2563EB;
+  --blue-700: #1D4ED8;
+  --blue-900: #1e3a8a;
+
+  --gray-50:  #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-900: #0F172A;
+
+  --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 16px rgba(37,99,235,.10), 0 1px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 12px 40px rgba(37,99,235,.15), 0 4px 12px rgba(0,0,0,.07);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 72px;
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  width: 100%;
+}
+
+
+#loader {
+  position: fixed; inset: 0;
+  background: var(--white);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-inner { text-align: center; }
+.loader-tooth { width: 56px; height: 66px; margin: 0 auto 1rem; animation: drawTooth 1.6s ease forwards; }
+.loader-tooth path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: strokeDraw 1.4s ease forwards .2s; }
+@keyframes strokeDraw { to { stroke-dashoffset: 0; } }
+.loader-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--blue-600);
+  letter-spacing: .05em;
+  animation: fadeUp .6s ease forwards .8s; opacity: 0;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+
+#scrollTop {
+  position: fixed; bottom: 96px; right: 24px; z-index: 500;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blue-600); color: #fff;
+  font-size: 1.1rem; font-weight: 700;
+  box-shadow: var(--shadow-md);
+  opacity: 0; transform: translateY(10px);
+  transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+#scrollTop.visible { opacity: 1; transform: translateY(0); }
+#scrollTop:hover { background: var(--blue-700); transform: translateY(-2px); }
+
+
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+  height: var(--nav-h);
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+}
+#navbar.scrolled { border-bottom-color: var(--gray-200); box-shadow: var(--shadow-sm); }
+
+.nav-container {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.35rem; font-weight: 600;
+  color: var(--gray-900);
+}
+.nav-logo:hover { color: var(--blue-600); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+}
+.nav-links a {
+  font-size: .9rem; font-weight: 500;
+  color: var(--gray-700);
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 2px; background: var(--blue-600);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--blue-600); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--blue-600); color: #fff !important;
+  padding: .5rem 1.25rem; border-radius: 8px;
+  transition: background var(--transition) !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--blue-700) !important; }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 36px; padding: 4px;
+}
+.hamburger span {
+  display: block; height: 2px; border-radius: 2px;
+  background: var(--gray-700);
+  transition: var(--transition);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: .8rem 1.8rem;
+  border-radius: 10px;
+  font-size: .95rem; font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer; border: 2px solid transparent;
+}
+.btn-primary {
+  background: var(--blue-600); color: #fff;
+  box-shadow: 0 4px 14px rgba(37,99,235,.35);
+}
+.btn-primary:hover { background: var(--blue-700); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,.4); }
+.btn-outline {
+  border-color: var(--blue-600); color: var(--blue-600); background: transparent;
+}
+.btn-outline:hover { background: var(--blue-600); color: #fff; transform: translateY(-2px); }
+.btn-full { width: 100%; }
+.btn-sm { padding: .6rem 1.2rem; font-size: .875rem; }
+
+.section { padding: 96px 0; }
+.section-alt { background: var(--gray-50); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-tag {
+  display: inline-block;
+  background: var(--blue-50); color: var(--blue-600);
+  border: 1px solid var(--blue-200);
+  padding: .3rem .9rem; border-radius: 99px;
+  font-size: .8rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600; line-height: 1.2;
+  color: var(--gray-900);
+  margin-bottom: .75rem;
+}
+.section-title em { font-style: italic; color: var(--blue-600); }
+.section-sub { color: var(--gray-600); font-size: 1.05rem; max-width: 540px; margin: 0 auto; }
+
+#hero {
+  min-height: 100vh;
+  padding-top: calc(var(--nav-h) + 40px);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background: var(--white);
+}
+.hero-bg-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--blue-100) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blue-100) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: .4;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+.hero-blob {
+  position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0;
+}
+.b1 { width: 500px; height: 500px; background: rgba(59,130,246,.12); top: -80px; right: -100px; }
+.b2 { width: 350px; height: 350px; background: rgba(139,92,246,.08); bottom: 0; left: -80px; }
+
+.hero-content {
+  position: relative; z-index: 2;
+  flex: 1; padding: 0 24px;
+  max-width: 600px;
+  margin-left: calc((100vw - 1200px)/2);
+  margin-left: max(24px, calc((100vw - 1200px)/2));
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--blue-50); color: var(--blue-600);
+  border: 1px solid var(--blue-200);
+  padding: .35rem 1rem; border-radius: 99px;
+  font-size: .8rem; font-weight: 600;
+  margin-bottom: 1.5rem;
+  animation: fadeUp .6s ease forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 600; line-height: 1.1;
+  color: var(--gray-900);
+  margin-bottom: 1.25rem;
+  animation: fadeUp .7s ease forwards .1s; opacity: 0;
+}
+.hero-title em { color: var(--blue-600); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--gray-600);
+  max-width: 440px; line-height: 1.7;
+  margin-bottom: 2rem;
+  animation: fadeUp .7s ease forwards .2s; opacity: 0;
+}
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 2.5rem;
+  animation: fadeUp .7s ease forwards .3s; opacity: 0;
+}
+.hero-stats {
+  display: flex; align-items: center; gap: 1.5rem;
+  animation: fadeUp .7s ease forwards .4s; opacity: 0;
+}
+.stat { text-align: center; }
+.stat strong { display: block; font-size: 1.6rem; font-weight: 700; color: var(--blue-600); line-height: 1; }
+.stat span { font-size: .8rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: .05em; }
+.stat-divider { width: 1px; height: 36px; background: var(--gray-200); }
+
+.hero-image-wrap {
+  position: relative; z-index: 2;
+  flex: 0 0 420px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 24px 40px 0;
+  margin-right: max(24px, calc((100vw - 1200px)/2));
+  animation: fadeUp .9s ease forwards .3s; opacity: 0;
+}
+.hero-illustration { width: 100%; max-width: 320px; }
+
+.hero-card-float {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white);
+  border-radius: 12px;
+  padding: .6rem 1rem;
+  font-size: .85rem; font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+}
+.hc1 { top: 60px; left: -10px; animation: float 4s ease-in-out infinite; }
+.hc2 { bottom: 80px; right: -10px; animation: float 4s ease-in-out infinite .8s; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-visual { position: relative; }
+.about-img-frame {
+  position: relative;
+  background: var(--blue-50);
+  border-radius: 24px;
+  padding: 32px;
+  border: 2px solid var(--blue-100);
+}
+.about-img-inner svg { width: 100%; border-radius: 16px; }
+.about-exp-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--blue-600); color: #fff;
+  border-radius: 16px; padding: 1rem 1.5rem;
+  text-align: center; box-shadow: var(--shadow-lg);
+}
+.about-exp-badge strong { display: block; font-size: 2rem; font-weight: 700; line-height: 1; }
+.about-exp-badge span { font-size: .75rem; opacity: .85; line-height: 1.4; }
+
+.about-trust-badges {
+  display: flex; flex-wrap: wrap; gap: .75rem;
+  margin-top: 2.5rem;
+}
+.trust-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--blue-100);
+  border-radius: 10px; padding: .6rem 1rem;
+  font-size: .85rem; font-weight: 500;
+  color: var(--gray-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.about-content { padding-left: 16px; }
+.about-lead { font-size: 1.15rem; color: var(--gray-700); margin-bottom: 1rem; font-weight: 500; }
+.about-body { color: var(--gray-600); margin-bottom: 1.5rem; line-height: 1.8; }
+.about-credentials { display: flex; flex-direction: column; gap: 1rem; }
+.credential {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px; padding: 1rem 1.25rem;
+}
+.credential-icon { font-size: 1.5rem; }
+.credential strong { display: block; font-size: .95rem; color: var(--gray-900); }
+.credential span { font-size: .85rem; color: var(--gray-600); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.service-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all var(--transition);
+  opacity: 0; transform: translateY(20px);
+}
+.service-card.visible { opacity: 1; transform: translateY(0); }
+.service-card:hover {
+  border-color: var(--blue-200);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.service-icon {
+  width: 56px; height: 56px;
+  background: color-mix(in srgb, var(--icon-color) 12%, transparent);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--icon-color);
+  margin-bottom: 1.25rem;
+}
+.service-icon svg { width: 26px; height: 26px; }
+.service-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .6rem; }
+.service-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.25rem; }
+.service-link {
+  font-size: .875rem; font-weight: 600; color: var(--blue-600);
+  transition: gap var(--transition);
+  display: inline-flex; align-items: center;
+}
+.service-link:hover { color: var(--blue-700); letter-spacing: .02em; }
+
+.service-card-cta {
+  background: var(--blue-600); border-color: var(--blue-600);
+  display: flex; align-items: center; justify-content: center;
+}
+.service-card-cta:hover { background: var(--blue-700); border-color: var(--blue-700); }
+.service-cta-inner { text-align: center; }
+.service-cta-inner h3 { color: #fff; margin-bottom: .75rem; }
+.service-cta-inner p { color: rgba(255,255,255,.8); margin-bottom: 1.5rem; }
+
+.booking-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start;
+}
+.booking-features { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+.booking-feat {
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.feat-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.booking-feat strong { display: block; font-weight: 600; font-size: .95rem; }
+.booking-feat span { font-size: .875rem; color: var(--gray-600); }
+
+.booking-form-wrap { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); }
+.booking-form h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 1.75rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.form-group label { font-size: .85rem; font-weight: 600; color: var(--gray-700); }
+.req { color: var(--blue-600); }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: .75rem 1rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue-400);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+  background: var(--white);
+}
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,.08);
+}
+.form-error { font-size: .8rem; color: #EF4444; min-height: 1rem; }
+
+.form-success {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: #F0FDF4; border: 1.5px solid #BBF7D0;
+  border-radius: 10px; padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+.form-success strong { display: block; font-size: .9rem; color: #15803D; }
+.form-success span { font-size: .85rem; color: #16a34a; }
+.form-success > span { font-size: .875rem; color: #16a34a; }
+
+.newsletter-section {
+  background: var(--blue-600);
+  padding: 72px 0;
+}
+.newsletter-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.newsletter-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600; color: #fff;
+  margin-bottom: .5rem;
+}
+.newsletter-text p { color: rgba(255,255,255,.8); font-size: .95rem; max-width: 400px; }
+
+.newsletter-form { flex: 1; min-width: 280px; }
+.nl-fields {
+  display: flex; gap: .75rem; flex-wrap: wrap;
+}
+.nl-fields input {
+  flex: 1; min-width: 160px;
+  padding: .75rem 1rem;
+  border: 1.5px solid rgba(255,255,255,.3);
+  border-radius: 10px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.nl-fields input::placeholder { color: rgba(255,255,255,.6); }
+.nl-fields input:focus { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.15); }
+.newsletter-form .btn-primary { background: #fff; color: var(--blue-700); box-shadow: none; }
+.newsletter-form .btn-primary:hover { background: var(--blue-50); transform: translateY(-2px); }
+.newsletter-form .form-error { color: #FCA5A5; }
+
+
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.testimonial-card:nth-child(4) { grid-column: 1 / 2; }
+.testimonial-card:nth-child(5) { grid-column: 2 / 3; }
+
+.testimonial-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: all var(--transition);
+  opacity: 0; transform: translateY(20px);
+}
+.testimonial-card.visible { opacity: 1; transform: translateY(0); }
+.testimonial-card:hover { box-shadow: var(--shadow-lg); border-color: var(--blue-200); transform: translateY(-3px); }
+
+.t-stars { color: #F59E0B; font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.testimonial-card p { font-size: .9rem; color: var(--gray-700); line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
+.t-author { display: flex; align-items: center; gap: .875rem; }
+.t-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-weight: 700; flex-shrink: 0;
+}
+.t-author strong { display: block; font-size: .9rem; }
+.t-author span { font-size: .8rem; color: var(--gray-500); }
+
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: stretch; }
+.contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.contact-item strong { display: block; font-weight: 600; margin-bottom: .25rem; }
+.contact-item span { font-size: .9rem; color: var(--gray-600); line-height: 1.6; display: block; }
+.contact-item a { color: var(--blue-600); }
+.contact-item a:hover { text-decoration: underline; }
+
+.map-wrap {
+  border-radius: 20px; overflow: hidden;
+  border: 1.5px solid var(--gray-200);
+  min-height: 360px;
+  box-shadow: var(--shadow-md);
+}
+.map-wrap iframe { width: 100%; height: 100%; display: block; }
+
+
+.footer {
+  background: var(--gray-900);
+  color: rgba(255,255,255,.7);
+  padding: 72px 0 0;
+}
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 56px; }
+
+.footer-brand .nav-logo { color: #fff !important; margin-bottom: 1rem; }
+.footer-brand p { font-size: .875rem; line-height: 1.7; margin-bottom: 1.25rem; }
+.footer-socials { display: flex; gap: .75rem; }
+.footer-socials a {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-weight: 700;
+  transition: background var(--transition);
+}
+.footer-socials a:hover { background: var(--blue-600); }
+
+.footer-links h4, .footer-contact h4 {
+  color: #fff; font-size: .9rem; font-weight: 600;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.footer-links ul { display: flex; flex-direction: column; gap: .65rem; }
+.footer-links a { font-size: .875rem; transition: color var(--transition); }
+.footer-links a:hover { color: var(--blue-400); }
+
+.footer-contact p { font-size: .875rem; line-height: 1.6; margin-bottom: .75rem; }
+.footer-contact a { color: rgba(255,255,255,.7); transition: color var(--transition); }
+.footer-contact a:hover { color: var(--blue-400); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 1.25rem 0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .5rem;
+  font-size: .8rem;
+}
+
+#chatbot {
+  position: fixed; bottom: 24px; right: 24px; z-index: 600;
+}
+#chatToggle {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--blue-600); color: #fff;
+  font-size: 1.25rem;
+  box-shadow: 0 8px 24px rgba(37,99,235,.4);
+  transition: all var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+#chatToggle:hover { background: var(--blue-700); transform: scale(1.05); }
+
+#chatWindow {
+  position: absolute; bottom: 70px; right: 0;
+  width: 340px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: chatSlide .2s ease;
+}
+@keyframes chatSlide { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+.chat-header {
+  background: var(--blue-600); color: #fff;
+  padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: .875rem;
+}
+.chat-header-avatar { font-size: 1.5rem; }
+.chat-header strong { display: block; font-size: .9rem; }
+.chat-header span { font-size: .75rem; opacity: .8; }
+
+.chat-messages {
+  max-height: 260px; overflow-y: auto;
+  padding: 1rem;
+  display: flex; flex-direction: column; gap: .75rem;
+  scroll-behavior: smooth;
+}
+.chat-msg { max-width: 90%; }
+.chat-msg.bot { align-self: flex-start; }
+.chat-msg.user { align-self: flex-end; }
+.chat-msg p {
+  padding: .65rem 1rem;
+  border-radius: 14px;
+  font-size: .875rem; line-height: 1.5;
+}
+.chat-msg.bot p { background: var(--gray-100); color: var(--gray-800); border-bottom-left-radius: 4px; }
+.chat-msg.user p { background: var(--blue-600); color: #fff; border-bottom-right-radius: 4px; }
+
+.chat-suggestions {
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.chat-suggest-btn {
+  text-align: left;
+  padding: .55rem .85rem;
+  background: var(--blue-50);
+  border: 1.5px solid var(--blue-100);
+  border-radius: 10px;
+  font-size: .8rem; font-weight: 500;
+  color: var(--blue-700);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.chat-suggest-btn:hover { background: var(--blue-100); border-color: var(--blue-200); }
+
+.chat-input-wrap {
+  display: flex; gap: .5rem;
+  padding: .75rem 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+#chatInput {
+  flex: 1;
+  padding: .6rem .875rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  font-size: .875rem;
+  outline: none;
+  width: auto;
+  transition: border-color var(--transition);
+}
+#chatInput:focus { border-color: var(--blue-400); }
+#chatSend {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--blue-600); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+#chatSend:hover { background: var(--blue-700); }
+
+[data-aos] { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+[data-aos].visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1024px) {
+  .hero-image-wrap { flex: 0 0 340px; }
+  .about-grid { gap: 48px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-card:nth-child(4), .testimonial-card:nth-child(5) { grid-column: auto; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  :root { --nav-h: 64px; }
+  .section { padding: 64px 0; }
+
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: rgba(255,255,255,.98);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--gray-200);
+    transform: translateY(-110%);
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+    z-index: 399;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-cta { width: 100%; text-align: center; }
+
+  #hero {
+    flex-direction: column;
+    padding-top: calc(var(--nav-h) + 32px);
+    padding-bottom: 40px;
+    text-align: center;
+  }
+  .hero-content { margin-left: 0; padding: 0 24px; max-width: 100%; }
+  .hero-badge, .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-sub { margin: 0 auto 2rem; }
+  .hero-image-wrap { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-content { padding-left: 0; }
+  .about-exp-badge { right: 0; bottom: -16px; }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .booking-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card:nth-child(4), .testimonial-card:nth-child(5) { grid-column: auto; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .map-wrap { min-height: 280px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .newsletter-inner { flex-direction: column; align-items: flex-start; }
+  #chatWindow { width: 300px; right: -8px; }
+}
+
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .hero-actions .btn { width: 100%; max-width: 280px; }
+  .nl-fields { flex-direction: column; }
+  .nl-fields .btn { width: 100%; }
+  #chatWindow { width: calc(100vw - 32px); right: 0; }
+  .booking-form-wrap { padding: 1.5rem; }
+}
+  </style>
+</head>
+<body>
+
+  <div id="loader">
+    <div class="loader-inner">
+      <svg class="loader-tooth" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 4C20 4 10 12 10 22C10 30 12 38 14 46C16 54 18 66 22 66C26 66 28 54 30 54C32 54 34 66 38 66C42 66 44 54 46 46C48 38 50 30 50 22C50 12 40 4 30 4Z" stroke="#2563EB" stroke-width="3" fill="none" stroke-dasharray="200" stroke-dashoffset="200"/>
+      </svg>
+      <p class="loader-text">NYC Dental Center</p>
+    </div>
+  </div>
+
+  
+  <button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 60 70" fill="none"><path d="M30 4C20 4 10 12 10 22C10 30 12 38 14 46C16 54 18 66 22 66C26 66 28 54 30 54C32 54 34 66 38 66C42 66 44 54 46 46C48 38 50 30 50 22C50 12 40 4 30 4Z" fill="#2563EB"/></svg>
+        <span>NYC Dental</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#booking">Book</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#booking" class="nav-cta">Book Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Trusted by 10,000+ New Yorkers</div>
+      <h1 class="hero-title">
+        Healthy Smiles<br/><em>Start Here.</em>
+      </h1>
+      <p class="hero-sub">World-class dental care in the heart of New York City. Gentle, modern, and built around you.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-primary">Book Appointment</a>
+        <a href="tel:+12125551234" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          (212) 555-1234
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>15+</strong><span>Years</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>10k+</strong><span>Patients</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>4.9★</strong><span>Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-card-float hc1">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+        <span>5-Star Rated</span>
+      </div>
+      <div class="hero-card-float hc2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        <span>ADA Certified</span>
+      </div>
+      <div class="hero-illustration">
+        <svg viewBox="0 0 320 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="360" rx="24" fill="#EFF6FF"/>
+          <ellipse cx="160" cy="130" rx="80" ry="80" fill="#DBEAFE"/>
+          <circle cx="160" cy="115" r="45" fill="#fff" stroke="#BFDBFE" stroke-width="3"/>
+          <path d="M145 108 C145 100 155 96 160 96 C165 96 175 100 175 108 C175 116 170 122 160 128 C150 122 145 116 145 108Z" fill="#93C5FD"/>
+          <path d="M148 115 C148 109 153 106 160 106 C167 106 172 109 172 115 C172 121 168 126 160 130 C152 126 148 121 148 115Z" fill="#3B82F6"/>
+          <rect x="60" y="230" width="200" height="8" rx="4" fill="#DBEAFE"/>
+          <rect x="80" y="250" width="160" height="6" rx="3" fill="#BFDBFE"/>
+          <rect x="100" y="268" width="120" height="6" rx="3" fill="#BFDBFE"/>
+          <rect x="85" y="290" width="150" height="36" rx="10" fill="#2563EB"/>
+          <text x="160" y="313" text-anchor="middle" fill="white" font-size="13" font-family="DM Sans">Book Appointment</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-img-frame">
+            <div class="about-img-inner">
+              <svg viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="320" rx="20" fill="#EFF6FF"/>
+                <circle cx="140" cy="110" r="65" fill="#DBEAFE"/>
+                <ellipse cx="140" cy="105" rx="40" ry="45" fill="#2563EB" opacity="0.15"/>
+                <circle cx="140" cy="95" r="35" fill="#fff" stroke="#93C5FD" stroke-width="2"/>
+                <ellipse cx="140" cy="88" rx="18" ry="20" fill="#BFDBFE"/>
+                <ellipse cx="140" cy="86" rx="12" ry="14" fill="#3B82F6"/>
+                <rect x="90" y="185" width="100" height="12" rx="6" fill="#1e40af"/>
+                <rect x="70" y="207" width="140" height="8" rx="4" fill="#93C5FD"/>
+                <rect x="80" y="225" width="120" height="8" rx="4" fill="#93C5FD"/>
+                <rect x="60" y="255" width="160" height="40" rx="10" fill="#fff" stroke="#DBEAFE" stroke-width="2"/>
+                <text x="140" y="278" text-anchor="middle" fill="#1D4ED8" font-size="11" font-family="DM Sans" font-weight="600">Dr. Sarah Mitchell, DDS</text>
+              </svg>
+            </div>
+            <div class="about-exp-badge">
+              <strong>15+</strong>
+              <span>Years of<br/>Excellence</span>
+            </div>
+          </div>
+          <div class="about-trust-badges">
+            <div class="trust-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#2563EB"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg><span>ADA Member</span></div>
+            <div class="trust-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#2563EB"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg><span>Board Certified</span></div>
+            <div class="trust-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#2563EB"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span>Top Rated NYC</span></div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag">About Us</div>
+          <h2 class="section-title">NYC's Most Trusted<br/>Dental Practice</h2>
+          <p class="about-lead">Founded in 2009, NYC Dental Center has built its reputation on one simple promise: exceptional dental care delivered with compassion and precision.</p>
+          <p class="about-body">Our team of board-certified dentists combines the latest technology with a personalized approach, ensuring every visit feels comfortable and every smile leaves our clinic healthier and more beautiful.</p>
+          <div class="about-credentials">
+            <div class="credential">
+              <div class="credential-icon">🎓</div>
+              <div>
+                <strong>Dr. Sarah Mitchell, DDS</strong>
+                <span>Harvard School of Dental Medicine</span>
+              </div>
+            </div>
+            <div class="credential">
+              <div class="credential-icon">🏥</div>
+              <div>
+                <strong>Dr. James Park, DMD</strong>
+                <span>NYU College of Dentistry</span>
+              </div>
+            </div>
+          </div>
+          <a href="#booking" class="btn btn-primary" style="display:inline-flex;margin-top:2rem">Meet Our Team →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Our Services</div>
+        <h2 class="section-title">Comprehensive Dental Care<br/>Under One Roof</h2>
+        <p class="section-sub">From routine cleanings to full smile makeovers, we have everything you need.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-aos>
+          <div class="service-icon" style="--icon-color:#3B82F6">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          </div>
+          <h3>General Dentistry</h3>
+          <p>Preventive care, cleanings, fillings, and exams to keep your smile healthy year-round.</p>
+          <a href="#booking" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-card" data-aos>
+          <div class="service-icon" style="--icon-color:#8B5CF6">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm3.5-9.5l-4.5 4.5-2-2-1.5 1.5 3.5 3.5 6-6-1.5-1.5z"/></svg>
+          </div>
+          <h3>Cosmetic Dentistry</h3>
+          <p>Veneers, bonding, and smile makeovers to give you the confidence of a perfect smile.</p>
+          <a href="#booking" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-card" data-aos>
+          <div class="service-icon" style="--icon-color:#06B6D4">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+          </div>
+          <h3>Dental Implants</h3>
+          <p>Permanent, natural-looking tooth replacements that restore function and aesthetics.</p>
+          <a href="#booking" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-card" data-aos>
+          <div class="service-icon" style="--icon-color:#F59E0B">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+          </div>
+          <h3>Orthodontics</h3>
+          <p>Traditional braces and Invisalign clear aligners for teens and adults seeking straighter teeth.</p>
+          <a href="#booking" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-card" data-aos>
+          <div class="service-icon" style="--icon-color:#10B981">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/></svg>
+          </div>
+          <h3>Teeth Whitening</h3>
+          <p>Professional in-office and take-home whitening treatments for a dramatically brighter smile.</p>
+          <a href="#booking" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-card service-card-cta" data-aos>
+          <div class="service-cta-inner">
+            <h3>Not sure where to start?</h3>
+            <p>Book a free consultation and we'll create your personalized treatment plan.</p>
+            <a href="#booking" class="btn btn-primary btn-sm">Free Consultation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="section">
+    <div class="container">
+      <div class="booking-grid">
+        <div class="booking-info">
+          <div class="section-tag">Appointment</div>
+          <h2 class="section-title">Book Your Visit<br/>in Minutes</h2>
+          <p class="section-sub" style="text-align:left">No long waits. No phone tag. Schedule online and we'll confirm within the hour.</p>
+          <div class="booking-features">
+            <div class="booking-feat"><span class="feat-icon">⏰</span><div><strong>Flexible Hours</strong><span>Mon–Sat: 8am–7pm</span></div></div>
+            <div class="booking-feat"><span class="feat-icon">📍</span><div><strong>Midtown Location</strong><span>456 Park Ave, Suite 10, NYC</span></div></div>
+            <div class="booking-feat"><span class="feat-icon">📞</span><div><strong>24/7 Emergency Line</strong><span>(212) 555-1234</span></div></div>
+            <div class="booking-feat"><span class="feat-icon">💳</span><div><strong>All Insurance Accepted</strong><span>Delta, Aetna, MetLife & more</span></div></div>
+          </div>
+        </div>
+        <div class="booking-form-wrap">
+          <form id="bookingForm" class="booking-form" novalidate>
+            <h3>Schedule Appointment</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name <span class="req">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Jane Smith" autocomplete="name"/>
+                <span class="form-error" id="fullName-err"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email"/>
+                <span class="form-error" id="email-err"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="(212) 000-0000" autocomplete="tel"/>
+                <span class="form-error" id="phone-err"></span>
+              </div>
+              <div class="form-group">
+                <label for="service">Service <span class="req">*</span></label>
+                <select id="service" name="service">
+                  <option value="">Select a service</option>
+                  <option>General Dentistry</option>
+                  <option>Cosmetic Dentistry</option>
+                  <option>Dental Implants</option>
+                  <option>Orthodontics</option>
+                  <option>Teeth Whitening</option>
+                  <option>Free Consultation</option>
+                  <option>Emergency Care</option>
+                </select>
+                <span class="form-error" id="service-err"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prefDate">Preferred Date <span class="req">*</span></label>
+                <input type="date" id="prefDate" name="prefDate"/>
+                <span class="form-error" id="prefDate-err"></span>
+              </div>
+              <div class="form-group">
+                <label for="prefTime">Preferred Time <span class="req">*</span></label>
+                <select id="prefTime" name="prefTime">
+                  <option value="">Select a time</option>
+                  <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
+                  <option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option>
+                  <option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option>
+                  <option>5:00 PM</option><option>6:00 PM</option>
+                </select>
+                <span class="form-error" id="prefTime-err"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="notes">Message / Notes</label>
+              <textarea id="notes" name="notes" placeholder="Any concerns, insurance info, or questions..." rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="bookBtn">
+              <span class="btn-text">Confirm Appointment</span>
+              <span class="btn-loading" style="display:none">Booking…</span>
+            </button>
+            <div id="bookingSuccess" class="form-success" style="display:none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#16a34a"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div><strong>Appointment Requested!</strong><span>We'll confirm via email within 1 hour.</span></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter" class="section newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <h2>Get Dental Health Tips & Special Offers</h2>
+          <p>Join 5,000+ patients who receive our monthly newsletter with oral care tips and exclusive patient discounts.</p>
+        </div>
+        <form id="newsletterForm" class="newsletter-form" novalidate>
+          <div class="nl-fields">
+            <input type="text" id="nlName" placeholder="Your Name" autocomplete="name"/>
+            <input type="email" id="nlEmail" placeholder="Your Email" autocomplete="email"/>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+          <span class="form-error" id="nl-err"></span>
+          <div id="nlSuccess" class="form-success" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+            <span>Welcome aboard! Check your inbox soon.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="testimonials" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">What Our Patients Say</h2>
+        <p class="section-sub">Real stories from real New Yorkers who trust us with their smiles.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-aos>
+          <div class="t-stars">★★★★★</div>
+          <p>"Dr. Mitchell completely transformed my smile with veneers. I used to hide my teeth in photos — now I can't stop smiling. The whole team was so warm and professional."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:#DBEAFE;color:#1D4ED8">SK</div>
+            <div><strong>Sarah K.</strong><span>Cosmetic Dentistry</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos>
+          <div class="t-stars">★★★★★</div>
+          <p>"I had severe dental anxiety but they made me feel completely at ease. Best dental experience of my life. The office is spotless and modern, and Dr. Park is truly exceptional."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:#EDE9FE;color:#7C3AED">MR</div>
+            <div><strong>Marcus R.</strong><span>General Dentistry</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos>
+          <div class="t-stars">★★★★★</div>
+          <p>"Got my Invisalign here and the results are incredible. The team checked in regularly and the app made tracking my progress so easy. 100% recommend to anyone considering orthodontic work."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:#DCFCE7;color:#15803D">JL</div>
+            <div><strong>Jessica L.</strong><span>Orthodontics</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos>
+          <div class="t-stars">★★★★★</div>
+          <p>"The dental implant procedure was seamless. I was nervous about surgery but they walked me through everything. Healed beautifully and now it feels completely natural. Worth every penny."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:#FEF3C7;color:#B45309">DM</div>
+            <div><strong>David M.</strong><span>Dental Implants</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos>
+          <div class="t-stars">★★★★★</div>
+          <p>"My teeth whitening results were so dramatic that friends thought I'd had veneers! The in-office treatment took about an hour and the difference was stunning. Highly recommend."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:#FCE7F3;color:#BE185D">AP</div>
+            <div><strong>Alicia P.</strong><span>Teeth Whitening</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">Find Us in Midtown NYC</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-wrap">
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Address</strong>
+                <span>456 Park Avenue, Suite 10<br/>New York, NY 10022</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <strong>Phone</strong>
+                <span><a href="tel:+12125551234">(212) 555-1234</a></span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <span><a href="mailto:hello@nycdental.com">hello@nycdental.com</a></span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <div>
+                <strong>Hours</strong>
+                <span>Mon–Fri: 8am–7pm<br/>Sat: 9am–5pm<br/>Sun: Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.395!2d-73.9717!3d40.7580!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25899a73b284d%3A0x5a1f4d8a0ae7ae2c!2sPark+Ave%2C+New+York%2C+NY!5e0!3m2!1sen!2sus!4v1"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="NYC Dental Center Location">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo" style="color:#fff">
+            <svg width="28" height="28" viewBox="0 0 60 70" fill="none"><path d="M30 4C20 4 10 12 10 22C10 30 12 38 14 46C16 54 18 66 22 66C26 66 28 54 30 54C32 54 34 66 38 66C42 66 44 54 46 46C48 38 50 30 50 22C50 12 40 4 30 4Z" fill="#60A5FA"/></svg>
+            <span>NYC Dental</span>
+          </a>
+          <p>Bringing world-class dental care to the heart of New York City since 2009.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">General Dentistry</a></li>
+            <li><a href="#services">Cosmetic Dentistry</a></li>
+            <li><a href="#services">Dental Implants</a></li>
+            <li><a href="#services">Orthodontics</a></li>
+            <li><a href="#services">Teeth Whitening</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Clinic</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#booking">Book Appointment</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>456 Park Avenue, Suite 10<br/>New York, NY 10022</p>
+          <p><a href="tel:+12125551234">(212) 555-1234</a></p>
+          <p><a href="mailto:hello@nycdental.com">hello@nycdental.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 NYC Dental Center. All rights reserved.</p>
+        <p>Designed with care for healthier smiles.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <div id="chatbot">
+    <button id="chatToggle" aria-label="Open chat">
+      <span class="chat-icon-open">💬</span>
+      <span class="chat-icon-close" style="display:none">✕</span>
+    </button>
+    <div id="chatWindow" style="display:none">
+      <div class="chat-header">
+        <div class="chat-header-avatar">🦷</div>
+        <div>
+          <strong>Dental Assistant</strong>
+          <span>Online • Typically replies instantly</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg bot">
+          <p>Hi there! 👋 I'm here to help. Choose a question or type your own:</p>
+        </div>
+        <div class="chat-suggestions">
+          <button class="chat-suggest-btn" data-q="What are your hours?">🕐 What are your hours?</button>
+          <button class="chat-suggest-btn" data-q="Where are you located?">📍 Where are you located?</button>
+          <button class="chat-suggest-btn" data-q="How to book appointment?">📅 How to book appointment?</button>
+          <button class="chat-suggest-btn" data-q="What services do you offer?">🦷 What services do you offer?</button>
+        </div>
+      </div>
+      <div class="chat-input-wrap">
+        <input type="text" id="chatInput" placeholder="Type a message…" autocomplete="off"/>
+        <button id="chatSend" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+'use strict';
+
+
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => loader.classList.add('hidden'), 1400);
+});
+
+const navbar    = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+
+const scrollTopBtn = document.getElementById('scrollTop');
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+const revealElements = document.querySelectorAll('[data-aos], .service-card, .testimonial-card');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // Stagger cards in a grid
+      const parent = entry.target.parentElement;
+      const siblings = [...parent.children];
+      const index = siblings.indexOf(entry.target);
+      entry.target.style.transitionDelay = `${index * 80}ms`;
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+const bookingForm = document.getElementById('bookingForm');
+
+function validateField(id, rule) {
+  const input   = document.getElementById(id);
+  const errEl   = document.getElementById(`${id}-err`);
+  const group   = input.closest('.form-group');
+  const value   = input.value.trim();
+  const { valid, msg } = rule(value);
+  if (!valid) {
+    group.classList.add('error');
+    errEl.textContent = msg;
+    return false;
+  }
+  group.classList.remove('error');
+  errEl.textContent = '';
+  return true;
+}
+
+const rules = {
+  fullName: v => v.length >= 2
+    ? { valid: true }
+    : { valid: false, msg: 'Please enter your full name (min 2 chars).' },
+
+  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+    ? { valid: true }
+    : { valid: false, msg: 'Please enter a valid email address.' },
+
+  phone: v => /^[\d\s\-\+\(\)]{7,}$/.test(v)
+    ? { valid: true }
+    : { valid: false, msg: 'Please enter a valid phone number.' },
+
+  service: v => v !== ''
+    ? { valid: true }
+    : { valid: false, msg: 'Please select a service.' },
+
+  prefDate: v => {
+    if (!v) return { valid: false, msg: 'Please choose a preferred date.' };
+    const chosen = new Date(v);
+    const today  = new Date(); today.setHours(0,0,0,0);
+    return chosen >= today
+      ? { valid: true }
+      : { valid: false, msg: 'Please choose a future date.' };
+  },
+
+  prefTime: v => v !== ''
+    ? { valid: true }
+    : { valid: false, msg: 'Please choose a preferred time.' },
+};
+
+Object.keys(rules).forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('blur', () => validateField(id, rules[id]));
+});
+
+bookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const valid = Object.keys(rules).map(id => validateField(id, rules[id])).every(Boolean);
+  if (!valid) return;
+
+  const btn     = document.getElementById('bookBtn');
+  const btnText = btn.querySelector('.btn-text');
+  const btnLoad = btn.querySelector('.btn-loading');
+  btn.disabled  = true;
+  btnText.style.display = 'none';
+  btnLoad.style.display = 'inline';
+
+  setTimeout(() => {
+   
+    const appointment = {
+      id:        Date.now(),
+      fullName:  document.getElementById('fullName').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      service:   document.getElementById('service').value,
+      prefDate:  document.getElementById('prefDate').value,
+      prefTime:  document.getElementById('prefTime').value,
+      notes:     document.getElementById('notes').value.trim(),
+      createdAt: new Date().toISOString(),
+    };
+
+   
+    const existing = JSON.parse(localStorage.getItem('nyc_dental_appointments') || '[]');
+    existing.push(appointment);
+    localStorage.setItem('nyc_dental_appointments', JSON.stringify(existing));
+
+    btn.style.display  = 'none';
+    const successEl    = document.getElementById('bookingSuccess');
+    successEl.style.display = 'flex';
+    bookingForm.reset();
+
+    setTimeout(() => {
+      btn.disabled            = false;
+      btn.style.display       = '';
+      btnText.style.display   = 'inline';
+      btnLoad.style.display   = 'none';
+      successEl.style.display = 'none';
+    }, 8000);
+  }, 1200);
+});
+
+
+const dateInput = document.getElementById('prefDate');
+if (dateInput) {
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+}
+
+const nlForm  = document.getElementById('newsletterForm');
+const nlErr   = document.getElementById('nl-err');
+const nlOk    = document.getElementById('nlSuccess');
+
+nlForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name  = document.getElementById('nlName').value.trim();
+  const email = document.getElementById('nlEmail').value.trim();
+
+  if (!name) { nlErr.textContent = 'Please enter your name.'; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    nlErr.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  nlErr.textContent = '';
+
+  const leads = JSON.parse(localStorage.getItem('nyc_dental_leads') || '[]');
+  leads.push({ name, email, createdAt: new Date().toISOString() });
+  localStorage.setItem('nyc_dental_leads', JSON.stringify(leads));
+
+  nlForm.reset();
+  nlOk.style.display = 'flex';
+  setTimeout(() => (nlOk.style.display = 'none'), 6000);
+});
+
+
+const chatToggle  = document.getElementById('chatToggle');
+const chatWindow  = document.getElementById('chatWindow');
+const chatOpen    = chatToggle.querySelector('.chat-icon-open');
+const chatClose   = chatToggle.querySelector('.chat-icon-close');
+const chatInput   = document.getElementById('chatInput');
+const chatSend    = document.getElementById('chatSend');
+const chatMsgs    = document.getElementById('chatMessages');
+
+const chatDB = [
+  {
+    patterns: ['hour', 'time', 'open', 'close', 'schedule', 'when'],
+    answer: '🕐 We\'re open Monday–Friday 8am–7pm and Saturday 9am–5pm. We\'re closed Sundays. Emergency care is available 24/7 at (212) 555-1234.'
+  },
+  {
+    patterns: ['location', 'address', 'where', 'find', 'directions', 'located'],
+    answer: '📍 We\'re at 456 Park Avenue, Suite 10, New York, NY 10022 — right in Midtown Manhattan. Nearest subway: 6 train to 51st St.'
+  },
+  {
+    patterns: ['book', 'appointment', 'schedule', 'reserve', 'visit'],
+    answer: '📅 You can book directly on our website using the Appointment form above! Just fill in your details and we\'ll confirm within 1 hour. Or call us at (212) 555-1234.'
+  },
+  {
+    patterns: ['service', 'offer', 'treatment', 'procedure', 'do you', 'provide'],
+    answer: '🦷 We offer: General Dentistry, Cosmetic Dentistry, Dental Implants, Orthodontics (braces & Invisalign), and Teeth Whitening. Free consultations are also available!'
+  },
+  {
+    patterns: ['insurance', 'cover', 'accept', 'delta', 'aetna', 'metlife'],
+    answer: '💳 We accept most major dental insurance plans including Delta Dental, Aetna, MetLife, Cigna, and United Healthcare. Call us for a quick benefits check!'
+  },
+  {
+    patterns: ['cost', 'price', 'fee', 'payment', 'pay', 'expensive', 'charge'],
+    answer: '💰 Costs vary by treatment. We offer free consultations and flexible payment plans. We also accept CareCredit and Sunbit financing. Call (212) 555-1234 for a quote!'
+  },
+  {
+    patterns: ['emergency', 'pain', 'broken', 'urgent', 'toothache', 'hurt'],
+    answer: '🚨 For dental emergencies, call our 24/7 emergency line: (212) 555-1234. We do our best to see emergency patients same-day!'
+  },
+  {
+    patterns: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'greet'],
+    answer: '👋 Hello! Welcome to NYC Dental Center. How can I help you today? Feel free to ask about our hours, location, services, or how to book!'
+  },
+  {
+    patterns: ['thank', 'thanks', 'appreciate', 'helpful'],
+    answer: '😊 You\'re very welcome! Is there anything else I can help you with? Don\'t hesitate to reach out!'
+  },
+];
+
+function getBotAnswer(text) {
+  const lower = text.toLowerCase();
+  for (const entry of chatDB) {
+    if (entry.patterns.some(p => lower.includes(p))) {
+      return entry.answer;
+    }
+  }
+  return '🤔 Sorry, I didn\'t understand that. Please <a href="#booking" style="color:#2563EB;font-weight:600">book an appointment</a> or call us at <a href="tel:+12125551234" style="color:#2563EB;font-weight:600">(212) 555-1234</a> — we\'re happy to help!';
+}
+
+function appendMsg(text, type) {
+  const msg = document.createElement('div');
+  msg.className = `chat-msg ${type}`;
+  const p = document.createElement('p');
+  if (type === 'bot') {
+    p.innerHTML = text; 
+  } else {
+    p.textContent = text;
+  }
+  msg.appendChild(p);
+  chatMsgs.appendChild(msg);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function handleUserMessage(text) {
+  if (!text.trim()) return;
+  appendMsg(text, 'user');
+
+  const typing = document.createElement('div');
+  typing.className = 'chat-msg bot';
+  typing.id = 'typing';
+  typing.innerHTML = '<p>…</p>';
+  chatMsgs.appendChild(typing);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    appendMsg(getBotAnswer(text), 'bot');
+  }, 700);
+
+  chatInput.value = '';
+}
+
+chatMsgs.addEventListener('click', (e) => {
+  if (e.target.classList.contains('chat-suggest-btn')) {
+    const q = e.target.dataset.q;
+    const suggestions = chatMsgs.querySelector('.chat-suggestions');
+    if (suggestions) suggestions.remove();
+    handleUserMessage(q);
+  }
+});
+
+chatSend.addEventListener('click', () => handleUserMessage(chatInput.value));
+chatInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') handleUserMessage(chatInput.value);
+});
+
+chatToggle.addEventListener('click', () => {
+  const isOpen = chatWindow.style.display === 'none' || chatWindow.style.display === '';
+  chatWindow.style.display = isOpen ? 'block' : 'none';
+  chatOpen.style.display   = isOpen ? 'none' : 'inline';
+  chatClose.style.display  = isOpen ? 'inline' : 'none';
+  if (isOpen) chatInput.focus();
+});
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  });
+});
+
+
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+
+const activeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navAnchors.forEach(a => {
+        a.style.color = '';
+        if (a.getAttribute('href') === `#${entry.target.id}`) {
+          a.style.color = 'var(--blue-600)';
+        }
+      });
+    }
+  });
+}, { threshold: 0.4, rootMargin: '-60px 0px -40% 0px' });
+
+sections.forEach(s => activeObserver.observe(s));
+
+console.log('%cNYC Dental Center 🦷', 'color:#2563EB;font-size:1.2rem;font-weight:bold;');
+console.log('%cAppointments stored in localStorage under "nyc_dental_appointments"', 'color:#475569;font-size:.85rem;');
+  </script>
+</body>
+</html>
